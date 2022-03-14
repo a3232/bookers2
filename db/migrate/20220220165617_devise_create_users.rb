@@ -35,15 +35,17 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
 
       t.timestamps null: false
       
-      t.integer :id
-      t.string :title
-      t.text :opinion
-      t.integer :user_id
+      
     end
 
     add_index :users, :email,                unique: true
     add_index :users, :reset_password_token, unique: true
     # add_index :users, :confirmation_token,   unique: true
     # add_index :users, :unlock_token,         unique: true
+    
+    add_column :users, :introduction, :text
+    
+
   end
+  
 end
