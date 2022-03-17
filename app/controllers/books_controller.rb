@@ -6,6 +6,8 @@ class BooksController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @users = User.all
+    @books = Book.all
   end
   
   def index
@@ -13,13 +15,14 @@ class BooksController < ApplicationController
     @user = current_user
     @books = Book.all
     @book = Book.new
+    @users = User.all
   end
   
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     @book.save
-    redirect_to books_path(@book)
+    redirect_to book_path(@book)
   end
   
   def edit
@@ -29,7 +32,7 @@ class BooksController < ApplicationController
   private
   
   def book_params
-    params.require(:book).permit(:title, :body, :image)
+    params.require(:book).permit(:title, :body)
   end
 
 end

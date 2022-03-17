@@ -1,0 +1,35 @@
+<main>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+    
+    <%= render 'book', users: @users %>
+    
+    <div class="col-md-8 offset-md-1">
+        <h2>Book detail</h2>
+        <table class="table">
+        
+        <tbody>
+          <% @books.each do |book| %>
+            <tr>
+              <td>
+                <%= link_to image_tag(@user.get_profile_image(40,40)), user_path(@user) %><br>
+                <%= link_to current_user.name, user_path(@user) %>
+              </td>
+              <td>
+                <%= link_to book.title, book_path(@user) %>
+              </td>
+              <td>
+                <%= book.body %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      
+        </table>
+      
+    </div>
+  </div>
+</div>
+
+</main>

@@ -1,8 +1,8 @@
 <main>
 <h2>User info</h2>
-<% @books.each do |book| %>
-	<% if book.image.attached? %>
-    <%= image_tag book.image, size: "200x200" %>
+<% @users.each do |user| %>
+	<% if user.profile_image.attached? %>
+    <%= image_tag @user.get_profile_image(63,63) %>
   <% else %>
     <%= image_tag 'no_image', size: "63x63", class: "attachment user profile_image fallback" %>
   <% end %>
