@@ -1,7 +1,6 @@
 <main>
 <div class="container px-5 px-sm-0">
   <div class="row">
-    <div class="col-md-3">
     
     <%= render 'book', users: @users %>
     
@@ -22,13 +21,20 @@
               <td>
                 <%= book.body %>
               </td>
+              <td>
+                <%= link_to "edit", edit_book_path(@user), class: "btn btn-sm btn-success edit_book_(@user)" %>  
+              </td>
+              <td>
+                <% if @user == current_user %>
+                    <%= link_to "Destroy", book_path(@user), method: :delete, class: "btn btn-sm btn-danger destroy_book_(@user)" %>
+                <% end %>
+              </td>    
             </tr>
           <% end %>
         </tbody>
       
         </table>
       
-    </div>
   </div>
 </div>
 
