@@ -2,12 +2,14 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
     
-    <%= render 'book', users: @users %>
+    <div class="col-md-3">
+      <%= render 'book', users: @users %>
+    </div>
     
     <div class="col-md-8 offset-md-1">
         <h2>Book detail</h2>
-        <table class="table">
         
+        <table class="table">
         <tbody>
           <% @books.each do |book| %>
             <tr>
@@ -25,14 +27,13 @@
                 <%= link_to "edit", edit_book_path(@user), class: "btn btn-sm btn-success edit_book_(@user)" %>  
               </td>
               <td>
-                <% if @user == current_user %>
-                    <%= link_to "Destroy", book_path(@user), method: :delete, class: "btn btn-sm btn-danger destroy_book_(@user)" %>
+                <% if @book.user == current_user %>
+                  <%= link_to "Destroy", book_path(@user), method: :delete, "data-confirm" => "本当に消しますか?", class: "btn btn-sm btn-danger destroy_book_(@user)" %>
                 <% end %>
-              </td>    
+              </td>
             </tr>
           <% end %>
         </tbody>
-      
         </table>
       
   </div>
