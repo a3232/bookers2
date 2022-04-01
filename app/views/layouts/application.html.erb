@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">  
     
     <script src="https://kit.fontawesome.com/3c5adb440e.js" crossorigin="anonymous"></script>
+    
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -30,46 +31,61 @@
           
           <% if user_signed_in? %>
             <li>
-              <%= link_to "Home", class: "nav-link text-light" do%>
+              <%= link_to user_path(current_user), class: "nav-link text-light" do%>
                 <i class="fas fa-home"></i>
-              <% end %>  
-            </li>
-            
-            <li>
-              <%= link_to "Users", class: " nav-link text-light" do%>
-                <i class="fas fa-users"></i>
+                Home
               <% end %>
             </li>
             
             <li>
-              <%= link_to "Books", class: " nav-link text-light" do%>
+              <%= link_to "/users", class: "nav-link text-light" do%>
+                <i class="fas fa-users"></i>
+                Users
+              <% end %>
+            </li>
+            
+            <li>
+              <%= link_to "/books", class: "nav-link text-light" do%>
                 <i class="fas fa-book"></i>
+                Books
               <% end %>   
             </li>
             
             <li>
-                <%= link_to "Log out", class: "nav-link text-light" do%>
-                
+              <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-light" do %>
                 <i class="fas fa-sign-out-alt"></i>
+                Log out
               <% end %>
             </li>
             
           <% else %>
             
             <li>
-              <%= link_to "Home", "/", class: "fas fa-home nav-link text-light" %>
+              <%= link_to "/", class: "nav-link text-light" do%>
+                <i class="fas fa-home"></i>
+                Home
+              <% end %>
             </li>
             
             <li>
-              <%= link_to "About", "/home/about", class: "fas fa-link nav-link text-light" %>
+              <%= link_to "/home/about", class: "nav-link text-light" do%>
+                <i class="fas fa-link"></i>
+                About
+              <% end %>
             </li>
             
             <li>
-              <%= link_to "Sign up", "/users/sign_up", class: "fas fa-user-plus nav-link text-light" %>
+              <%= link_to "/users/sign_up", class: "nav-link text-light" do%>
+                <i class="fas fa-user-plus"></i>
+                Sign up
+              <% end %>
             </li>
             
             <li>
-              <%= link_to "Log in", "/users/sign_in", class: "fas fa-sign-in-alt nav-link text-light" %>
+              <%= link_to "/users/sign_in", class: "nav-link text-light" do%>
+                <i class="fas fa-sign-in-alt"></i>
+                Log in
+              <% end %>
             </li>
             
           <% end %>
@@ -77,8 +93,15 @@
       </div>
     </nav>
   </header>
+  
+  <body>
+    <% flash.each do |key, value| %>
+        <%= content_tag(:div, value, class: "#{key}") %>
+    <% end %>
+  </body>
+  
   <%= yield %>
-
+  
     <footer>
       <div class="container mt-5">
         <div class="row">

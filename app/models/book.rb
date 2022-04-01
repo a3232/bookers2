@@ -7,7 +7,7 @@ class Book < ApplicationRecord
   
   validates :body, presence: true, length: {maximum: 200}
   
-  validates :profile_image, presence: true
+  
   
   def get_profile_image(width, height)
     unless profile_image.attached?
