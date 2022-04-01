@@ -18,23 +18,23 @@
             <label for="book_title">Title</label><br>
             <%= f.text_field :title, class: "form-control book_title" %>
           </div>
-        
+
           <div class="form-group">
             <label for="book_opinion">Opinion</label><br>
             <%= f.text_area :body, class: "form-control book_body" %>
           </div>
-        
+
           <div class="form-group">
             <%= f.submit 'Update Book', class: "btn btn-success" %>
           </div>
-          
-          <%= link_to "Show", book_path(@user), class: "book_path#{}" %>
+
+          <%= link_to "Show", book_path(@book), class: "book_path#{@book.id}" %>
           |
           <%= link_to "Back", "/books", class: "back" %>
         <% end %>
-            
+
       </div>
     </div>
   </div>
-  
+
 </main>
